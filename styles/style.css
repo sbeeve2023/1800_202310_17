@@ -1,1 +1,13 @@
-
+.btn-custom {
+    --bs-btn-color:#000;
+    --bs-btn-bg:#5887FF;
+    --bs-btn-hover-bg:#55C1FF;
+}
+.btn-custom2 {
+    --bs-btn-bg: #FFFFFF;
+    --bs-btn-hover-bg: #102E4A;
+}
+.text-bg-custom {
+    color: #FFF;
+    background-color: #102E4A;
+}
