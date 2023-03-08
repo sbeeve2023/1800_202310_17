@@ -115,3 +115,9 @@ body {
 .rating:hover>input:checked~label:before {
     opacity: 0.4
 }
+#firebaseui-auth-container {
+    padding-top: 8%;
+}
+#signup{
+    background-color: #55C1FF;
+}
