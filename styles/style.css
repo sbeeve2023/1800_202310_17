@@ -11,3 +11,9 @@
     color: #FFF;
     background-color: #102E4A;
 }
+#firebaseui-auth-container {
+    padding-top: 8%;
+}
+#signup{
+    background-color: #55C1FF;
+}
