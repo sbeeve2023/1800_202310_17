@@ -7,7 +7,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
     <!-- Bootstrap Library CSS CDN go here -->
@@ -25,6 +25,9 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"
+        charset="utf-8"></script>
 
 </head>
 
@@ -45,9 +48,8 @@
                     status.
                 </p>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <a
-                        href="signup.html"><button
-                            type="button" class="btn btn-custom btn-lg px-4 me-md-2">Join Today</button></a>
+                    <a href="signup.html"><button type="button" class="btn btn-custom btn-lg px-4 me-md-2">Join
+                            Today</button></a>
                     <a
                         href="https://previews.123rf.com/images/koldunov/koldunov2003/koldunov200300028/142902477-serious-young-hispanic-man-with-raised-eyebrow-having-doubts-or-distrust-studio-shot-on-gray-wall-ne.jpg"><button
                             type="button" class="btn btn-outline-secondary btn-lg px-4">Or Else...</button></a>
@@ -55,6 +57,8 @@
             </div>
         </div>
     </div>
+    <!--<iframe frameborder="0" width="80%" height="600"
+        src="https://opendata.vancouver.ca/map/embed/cooling_spots/?&static=false&scrollWheelZoom=true"></iframe>-->
 
 
         <center><div id="map"></div></center>
