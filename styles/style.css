@@ -40,7 +40,7 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #A682FF;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -63,9 +63,20 @@
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-  .leaflet-container {
+  #map {
+    display: flex;
     height: 400px;
     width: 600px;
     max-width: 100%;
     max-height: 100%;
+    align-content: center;
   }
+
+  .card-body {
+    display: inline;
+  }
+
+  #profile {
+    border-radius: 50%;
+  }
+  

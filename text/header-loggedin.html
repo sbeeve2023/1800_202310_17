@@ -19,11 +19,13 @@
 
             <div class="text-end">
                 <div class="dropdown">
-                    <img src="/images/logo.png" width="75px" class="dropdown">
+                    <img src="/images/logo.png" width="75px" class="dropdown" id="profile">
                     <div class="dropdown-content">
                         <a href="favourites.html">Favourites</a>
                         <a href="form.html">Review Location</a>
                         <a href="profile.html">Profile</a>
+                        <a href="reviews.html">Reviews</a>
+                        <a onClick="firebase.auth().signOut()">Logout</a>
                     </div>
                 </div>
             </div>
