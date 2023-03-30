@@ -8,10 +8,45 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const parkMark = L.markerClusterGroup();
 
+var parkIcon = new L.Icon({
+	iconUrl: './images/park.png',
+	
+
+    iconSize:     [30, 30] 
+
+});
+
 $.getJSON("https://opendata.vancouver.ca/api/records/1.0/search/?dataset=parks&q=&rows=216", function(data) {
 	data.records.forEach(function(data) {
-		var parkMarker = L.marker(data.fields.googlemapdest).bindPopup(data.fields.name);
+		var parkMarker = L.marker(data.fields.googlemapdest, {icon: parkIcon}).bindPopup(data.fields.name);
 		parkMark.addLayer(parkMarker);
+	});
+});
+
+//const treeMark = L.markerClusterGroup();
+
+//$.getJSON("https://opendata.vancouver.ca/api/records/1.0/search/?dataset=street-trees&q=&rows=1000", function(data) {
+//	data.records.forEach(function(data) {
+//		var treeMarker = L.marker(data.fields.geo_point_2d).bindPopup(data.fields.height_range_id);
+//		treeMark.addLayer(treeMarker);
+//		console.log(data.fields.height_range_id);
+//	});
+//});
+
+const waterMark = L.markerClusterGroup();
+
+var waterIcon = new L.Icon({
+	iconUrl: './images/water.png',
+	
+
+    iconSize:     [30, 30] 
+
+});
+
+$.getJSON("https://opendata.vancouver.ca/api/records/1.0/search/?dataset=drinking-fountains&q=&rows=1000", function(data) {
+	data.records.forEach(function(data) {
+		var waterMarker = L.marker(data.fields.geo_point_2d, {icon: waterIcon}).bindPopup(data.fields.geo_local_area);
+		waterMark.addLayer(waterMarker);
 	});
 });
 
@@ -34,6 +69,9 @@ const markers = L.markerClusterGroup({
 		});
 	}
 });
+
+
+
 db.collection("reviews").get().then(function (review) {
 	review.forEach(function (doc) {
 		var marker = L.marker([doc.data().latitude, doc.data().longitude], {rating: doc.data().rating, id: doc})
@@ -50,6 +88,8 @@ db.collection("reviews").get().then(function (review) {
 })
 map.addLayer(parkMark);
 map.addLayer(markers);
+//map.addLayer(treeMark);
+map.addLayer(waterMark);
 
 L.GeoIP = L.extend({
 
