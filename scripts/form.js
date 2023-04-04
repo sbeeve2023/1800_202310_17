@@ -1,3 +1,8 @@
+firebase.auth().onAuthStateChanged(user => {
+    db.collection("users").doc(user.uid).get().then( function(userDoc) {
+        document.getElementById("profileImg").src = userDoc.data().profilePic;
+    })
+})
 async function writeReview() {
     navigator.geolocation.getCurrentPosition(function(location) {
         let lat = location.coords.latitude;

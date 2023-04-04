@@ -1,3 +1,4 @@
+const storage = firebase.storage();
 var img = "./images/logo.png"
 var imageFile = "./images/logo.png";
 var image = document.getElementById('mypic-goes-here');
