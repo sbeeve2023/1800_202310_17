@@ -6,6 +6,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             //get the document for current user.
             currentUser.get().then(userDoc => {
                 document.getElementById('profile').src = userDoc.data().profilePic;
+                document.getElementById('name').innerHTML = userDoc.data().name;
             })
         } else {
             // No user is signed in.

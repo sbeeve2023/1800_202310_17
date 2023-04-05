@@ -18,7 +18,8 @@ var parkIcon = new L.Icon({
 
 $.getJSON("https://opendata.vancouver.ca/api/records/1.0/search/?dataset=parks&q=&rows=216", function(data) {
 	data.records.forEach(function(data) {
-		var parkMarker = L.marker(data.fields.googlemapdest, {icon: parkIcon}).bindPopup(data.fields.name);
+		let click = "</br><button onClick='navigate(" + data.fields.googlemapdest + ")'>Navigate</button>";
+		var parkMarker = L.marker(data.fields.googlemapdest, {icon: parkIcon}).bindPopup(data.fields.name + click);
 		parkMark.addLayer(parkMarker);
 	});
 });
@@ -45,7 +46,8 @@ var waterIcon = new L.Icon({
 
 $.getJSON("https://opendata.vancouver.ca/api/records/1.0/search/?dataset=drinking-fountains&q=&rows=1000", function(data) {
 	data.records.forEach(function(data) {
-		var waterMarker = L.marker(data.fields.geo_point_2d, {icon: waterIcon}).bindPopup(data.fields.geo_local_area);
+		let click = "</br><button onClick='navigate(" + data.fields.geo_point_2d + ")'>Navigate</button>";
+		var waterMarker = L.marker(data.fields.geo_point_2d, {icon: waterIcon}).bindPopup(data.fields.geo_local_area + click);
 		waterMark.addLayer(waterMarker);
 	});
 });
@@ -74,17 +76,13 @@ const markers = L.markerClusterGroup({
 
 db.collection("reviews").get().then(function (review) {
 	review.forEach(function (doc) {
-		var marker = L.marker([doc.data().latitude, doc.data().longitude], {rating: doc.data().rating, id: doc})
-			.bindPopup('Review: ' + doc.data().rating + "/5" + "\nComment: " + doc.data().comment)
+		let click = "</br><button onClick='navigate(" + doc.data().latitude + ", " + doc.data().longitude + ")'>Navigate to Marker</button>";
+		var marker = L.marker([doc.data().latitude, doc.data().longitude], { rating: doc.data().rating, id: doc })
+			.bindPopup('Review: ' + doc.data().rating + "/5" + "</br>Comment: " + doc.data().comment
+				+ click)
 		markers.addLayer(marker);
 
 	})
-	markers.eachLayer(function (layer){
-		var popAdd = '<a onClick=console.log("Hi")>Read More';
-		var curPop = layer.getPopup().getContent();
-		layer.bindPopup(curPop + popAdd);
-	
-	});
 })
 map.addLayer(parkMark);
 map.addLayer(markers);
@@ -120,8 +118,28 @@ L.GeoIP = L.extend({
 	},
 
 	centerMapOnPosition: function (map, zoom, ip) {
-		var position = L.GeoIP.getPosition(ip);
+		var position = L.geoLet;
 		map.setView(position, zoom);
 	}
 });
 L.control.locate().addTo(map);
+
+
+
+var router = L.Routing.control({
+	geocoder: L.Control.Geocoder.nominatim(),
+	router: new L.Routing.graphHopper('19a2eebb-26c4-4271-8194-2585fce8a66c', {
+		urlParameters : {
+			profile: 'foot'
+	}
+	}),
+}).addTo(map);
+
+function navigate(lat, long) {
+	navigator.geolocation.getCurrentPosition(function (location) {
+		let lat2 = location.coords.latitude;
+		let long2 = location.coords.longitude;
+		router.spliceWaypoints(1, 1, L.latLng(lat, long));
+		router.spliceWaypoints(0, 1, L.latLng(lat2, long2));
+	})
+}
