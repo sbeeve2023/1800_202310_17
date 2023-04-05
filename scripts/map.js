@@ -8,10 +8,47 @@ const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 const parkMark = L.markerClusterGroup();
 
-$.getJSON("https://opendata.vancouver.ca/api/records/1.0/search/?dataset=parks&q=&rows=216", function (data) {
-	data.records.forEach(function (data) {
-		var parkMarker = L.marker(data.fields.googlemapdest).bindPopup(data.fields.name);
+var parkIcon = new L.Icon({
+	iconUrl: './images/park.png',
+	
+
+    iconSize:     [30, 30] 
+
+});
+
+$.getJSON("https://opendata.vancouver.ca/api/records/1.0/search/?dataset=parks&q=&rows=216", function(data) {
+	data.records.forEach(function(data) {
+		let click = "</br><button onClick='navigate(" + data.fields.googlemapdest + ")'>Navigate</button>";
+		var parkMarker = L.marker(data.fields.googlemapdest, {icon: parkIcon}).bindPopup(data.fields.name + click);
 		parkMark.addLayer(parkMarker);
+	});
+});
+
+//const treeMark = L.markerClusterGroup();
+
+//$.getJSON("https://opendata.vancouver.ca/api/records/1.0/search/?dataset=street-trees&q=&rows=1000", function(data) {
+//	data.records.forEach(function(data) {
+//		var treeMarker = L.marker(data.fields.geo_point_2d).bindPopup(data.fields.height_range_id);
+//		treeMark.addLayer(treeMarker);
+//		console.log(data.fields.height_range_id);
+//	});
+//});
+
+const waterMark = L.markerClusterGroup();
+
+var waterIcon = new L.Icon({
+	iconUrl: './images/water.png',
+	
+
+    iconSize:     [30, 30] 
+
+});
+
+$.getJSON("https://opendata.vancouver.ca/api/records/1.0/search/?dataset=drinking-fountains&q=&rows=1000", function(data) {
+	data.records.forEach(function(data) {
+		let click = "</br><button onClick='navigate(" + data.fields.geo_point_2d + ")'>Navigate</button>";
+		var waterMarker = L.marker(data.fields.geo_point_2d, {icon: waterIcon}).bindPopup(data.fields.geo_local_area + click);
+		waterMark.addLayer(waterMarker);
 	});
 });
 
@@ -34,11 +71,14 @@ const markers = L.markerClusterGroup({
 		});
 	}
 });
+
+
+
 db.collection("reviews").get().then(function (review) {
 	review.forEach(function (doc) {
-		let click = "<p type='button' onClick='navigate(" + doc.data().latitude + ", " + doc.data().longitude + ")'>Navigate</p>";
+		let click = "</br><button onClick='navigate(" + doc.data().latitude + ", " + doc.data().longitude + ")'>Navigate to Marker</button>";
 		var marker = L.marker([doc.data().latitude, doc.data().longitude], { rating: doc.data().rating, id: doc })
-			.bindPopup('Review: ' + doc.data().rating + "/5" + "\nComment: " + doc.data().comment
+			.bindPopup('Review: ' + doc.data().rating + "/5" + "</br>Comment: " + doc.data().comment
 				+ click)
 		markers.addLayer(marker);
 
@@ -46,6 +86,8 @@ db.collection("reviews").get().then(function (review) {
 })
 map.addLayer(parkMark);
 map.addLayer(markers);
+//map.addLayer(treeMark);
+map.addLayer(waterMark);
 
 L.GeoIP = L.extend({
 
@@ -86,13 +128,15 @@ L.control.locate().addTo(map);
 
 var router = L.Routing.control({
 	geocoder: L.Control.Geocoder.nominatim(),
-	router: new L.Routing.graphHopper('19a2eebb-26c4-4271-8194-2585fce8a66c'),
-	profile: "foot"
+	router: new L.Routing.graphHopper('19a2eebb-26c4-4271-8194-2585fce8a66c', {
+		urlParameters : {
+			profile: 'foot'
+	}
+	}),
 }).addTo(map);
 
 function navigate(lat, long) {
 	navigator.geolocation.getCurrentPosition(function (location) {
-		console.log(L.geoLet)
 		let lat2 = location.coords.latitude;
 		let long2 = location.coords.longitude;
 		router.spliceWaypoints(1, 1, L.latLng(lat, long));

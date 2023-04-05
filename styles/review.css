@@ -8,7 +8,6 @@ body {
 #topdiv {
     display: grid;
     place-items: center;
-    font-family: 'Manrope', sans-serif;
     padding-top: 50px;
 
 }
@@ -45,19 +44,19 @@ body {
     background-color: #fff;
     border-color: #ffffff;
     outline: 0;
-    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important;
+    box-shadow: 0 0 0 1px #102E4A !important;
 }
 
 .send {
     color: #fff;
-    background-color: #ff0000;
-    border-color: #ff0000;
+    background-color: #5887FF;
+    border-color: #102E4A;
 }
 
 .send:hover {
     color: #fff;
-    background-color: #f50202;
-    border-color: #f50202;
+    background-color: #755AFF;
+    border-color: #102E4a;
 }
 
 
@@ -77,7 +76,7 @@ body {
     position: relative;
     width: 19px;
     font-size: 25px;
-    color: #ff0000;
+    color: #5887FF;
     cursor: pointer;
 }
 
@@ -98,4 +97,12 @@ body {
 
 .rating:hover>input:checked~label:before {
     opacity: 0.4
+}
+
+#cancel{
+    background-color: red;
+}
+
+#cancel:hover {
+    background-color: rgb(184, 3, 3);
 }
