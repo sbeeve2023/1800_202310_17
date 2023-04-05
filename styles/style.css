@@ -1,82 +1,131 @@
 .btn-custom {
-    --bs-btn-color: #000;
-    --bs-btn-bg: #5887FF;
-    --bs-btn-hover-bg: #55C1FF;
+  --bs-btn-color: #000;
+  --bs-btn-bg: #5887FF;
+  --bs-btn-hover-bg: #55C1FF;
 }
 
 .btn-custom2 {
-    --bs-btn-bg: #FFFFFF;
-    --bs-btn-hover-bg: #102E4A;
+  --bs-btn-bg: #FFFFFF;
+  --bs-btn-hover-bg: #102E4A;
 }
 
 .text-bg-custom {
-    color: #FFF;
-    background-color: #102E4A;
+  color: #FFF;
+  background-color: #102E4A;
 }
 
 
 #firebaseui-auth-container {
-    padding-top: 8%;
+  padding-top: 8%;
 }
-#signup{
-    background-color: #55C1FF;
+
+#signup {
+  background-color: #55C1FF;
 }
 
 .dropbtn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #A682FF;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  /* Links inside the dropdown */
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  /* Show the dropdown menu on hover */
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
 
-  #map {
-    display: flex;
-    height: 400px;
-    width: 800px;
-    max-width: 100%;
-    max-height: 100%;
-    align-content: center;
-  }
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
-  .card-body {
-    display: inline;
-  }
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #A682FF;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
 
-  #profile {
-    border-radius: 50%;
-  }
-  
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+#map {
+  display: flex;
+  height: 400px;
+  width: 800px;
+  max-width: 100%;
+  max-height: 100%;
+  align-content: center;
+}
+
+.card-body {
+  display: inline;
+}
+
+#profile {
+  border-radius: 50%;
+}
+
+.logo {
+  height: 80px;
+  display: flex;
+ 
+}
+
+.legend {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #ccc;
+  padding: 10px;
+}
+
+.legend h3 {
+  font-size: 16px;
+  margin-top: 0px;
+}
+
+.legend ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.legend li {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.legend img {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.legend .symbol {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+}
