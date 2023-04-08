@@ -44,10 +44,23 @@
 <body>
 
     <header id="header"></header>
-
-    <center>
-        <div id="map"></div>
-    </center>
+    <div class="row mb-2">
+        <div class="legend col-md-2">
+            <h3>Legend</h3>
+            <ul>
+                <li>
+                    <img src="/images/park.png" alt="Symbol 1" width="20" height="20"> Parks
+                </li>
+                <li>
+                    <img src="/images/water.png" alt="Symbol 2" width="20" height="20"> Water Fountains
+                </li>
+                <li>
+                    <img src="/images/blue.png" alt="Symbol 3" width="20" height="20"> User Reviews
+                </li>
+            </ul>
+        </div>
+            <div id="map" class="col-md-1"></div>
+        </div>
     <nav id="footerPlaceholder"></nav>
     <script src="./scripts/firebaseAPI.js"></script>
     <script src="./scripts/map.js"></script>
